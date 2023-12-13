@@ -91,8 +91,6 @@ class DataTransformation:
             input_train_df_arr = preprocessing_obj.fit_transform(input_train_df)
             input_test_df_arr = preprocessing_obj.transform(input_test_df)
 
-            logging.info("Preprocessing Completed")
-
             #Resampling
             ros = RandomOverSampler(sampling_strategy='auto', random_state=42)
             
@@ -106,7 +104,8 @@ class DataTransformation:
 
             train_arr = np.c_[input_train_df_final,np.array(target_train_df_final)]
             test_arr = np.c_[input_test_df_final,np.array(target_test_df_final)]
-            
+
+            logging.info("Preprocessing Completed")            
              
             # Saving preprocessing_obj at the artifacts destination:
             logging.info("Saving Preprocessor File")
