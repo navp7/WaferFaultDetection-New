@@ -1,9 +1,10 @@
 from pymongo.mongo_client import MongoClient
 import pandas as pd
 import json
+from src.constant import*
 
 # uniform resource indentifier
-uri = "mongodb+srv://navi:navimongodb@cluster0.0iyu8a9.mongodb.net/?retryWrites=true&w=majority"
+uri = MONGO_DB_URL
 
 # Create a new client and connect to the server
 client = MongoClient(uri)

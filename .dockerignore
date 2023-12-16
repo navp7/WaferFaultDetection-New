@@ -4,5 +4,6 @@ predictions/
 logs/
 notebooks/
 env/
+venv/
 LICENSE
 README.md
