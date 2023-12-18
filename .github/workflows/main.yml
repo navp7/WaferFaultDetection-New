@@ -36,16 +36,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: ${{secrets.AWS_DEFAULT_REGION}}
       
-      - name: Debug AWS Credentials
-        run: |
-            echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
-            echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
-            echo "AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION"    
-
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
@@ -58,5 +52,5 @@ jobs:
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker build -t ${{ secrets.AWS_ECR_REPO_URI }}:$IMAGE_TAG .
-          docker push ${{ secrets.AWS_ECR_REPO_URI }}:$IMAGE_TAG
+          docker build -t ${{secrets.AWS_ECR_REPO_URI}}:$IMAGE_TAG .
+          docker push ${{secrets.AWS_ECR_REPO_URI}}:$IMAGE_TAG
