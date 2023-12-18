@@ -44,7 +44,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         with:
-          registry: ${{ secrets.AWS_ECR_REPO_URI }}
+          registries: ${{ secrets.AWS_ECR_REPO_URI }}
           # Mask the password for additional security
           mask-password: true
 
