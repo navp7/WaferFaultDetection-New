@@ -44,11 +44,9 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-          # Replace "<YOUR_ECR_URL>" with your actual ECR registry URL
           registry: ${{ secrets.AWS_ECR_REPO_URI }}
+          # Mask the password for additional security
+          mask-password: true
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
