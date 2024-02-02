@@ -8,36 +8,28 @@ from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import Model_trainer
 
 
-class TrainPipeline:
-    '''
-    Main class for Training Pipeline
-    '''
-    def __init__(self):
-        self.data_ingestion = DataIngestion()
 
-        self.data_transformation = DataTransformation()
+if __name__ == '__main__': # Initializing the main python environment
 
-        self.model_trainer = Model_trainer() 
+    try:
+        logging.info("Data Ingestion Initiated")
+        obj=DataIngestion()  # initializing DataIngestion() class by creating a variable obj
+        train_data_path,test_data_path = obj.initiate_data_ingestion()  # calling method initiate_data_ingestion()
+        print(train_data_path,test_data_path)
+        logging.info("Data Transformation Completed")
 
-    def run_pipeline(self):
-        """
-            Method Name :   run_pipeline
-            Description :   This method runs the pipeline and perform the training. 
-            
-        """
-        try:
-            logging.info("Data Ingestion Initiated")
-            train_path, test_path = self.data_ingestion.initiate_data_ingestion()
-            logging.info("Data Ingestion Completed")
+        logging.info("Data Transformation Initiated")
+        data_transformation = DataTransformation() # initializing DataTranformation() class by creating a variable 'data_transformation'
+        # calling method initiate_data_transfromation()
+        train_arr,test_arr,obj_path=data_transformation.initiate_DataTransformation(train_data_path,test_data_path)
+        print(obj_path)
+        logging.info("Data Transformation Completed")
 
-            logging.info("Data Transformation Initiated")
-            train_arr,test_arr,preprocessor_path = self.data_transformation.initiate_DataTransformation(train_data_path=train_path,test_data_path=test_path)
-            logging.info("Data Transformation Completed")
+        logging.info("Model Trainer Initiated")
+        model_trainer = Model_trainer()
+        model_trainer.initiate_model_training(train_arr,test_arr)
 
-            logging.info("Model Trainer Initiated")
-            best_model_name,best_acc_score = self.model_trainer.initiate_model_training(train_arr,test_arr)
-
-        except Exception as e:
-            logging.info("Error occured in training pipeline")
-            raise CustomException (e,sys)
+    except Exception as e:
+        logging.info("Error occured in training pipeline")
+        raise CustomException (e,sys)
 

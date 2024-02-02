@@ -3,7 +3,6 @@ from src.exception import CustomException
 from src.logger import logging
 import pandas as pd
 import os,sys
-from src.pipeline.train_pipeline import TrainPipeline
 from src.pipeline.predict_pipeline import PredictionPipeline
 #from src.utils import MainUtils
 
@@ -14,16 +13,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/train")
-def train_route():
-    try:
-        train_pipeline = TrainPipeline()
-        train_pipeline.run_pipeline()
 
-        return render_template('train.html')
-
-    except Exception as e:
-        raise CustomException(e,sys)
 
 @app.route('/predict', methods=['POST', 'GET'])
 def upload():

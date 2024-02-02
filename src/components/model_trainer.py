@@ -9,7 +9,7 @@ from sklearn.ensemble import GradientBoostingClassifier, AdaBoostClassifier, Ran
 from sklearn.neighbors import KNeighborsClassifier
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
-from src.utils import evaluate_models, save_object, MainUtils
+from src.utils import train_models, save_object, evaluate_best_model
 from typing import List
 
 
@@ -28,7 +28,7 @@ class Model_trainer():
     # Initializing model training path:
     def __init__(self):
         self.model_trainer_config = Model_trainer_config()
-        self.utils = MainUtils
+        #self.utils = MainUtils
 
     # Initiating a method to perform model training and hyperparamter tunning for best model evaluation
     def initiate_model_training(self, train_arr,test_arr):
@@ -85,32 +85,35 @@ class Model_trainer():
                 }}
             
             logging.info("Training With Different Models...")
-            model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,
+            model_report:dict=train_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,
                                              models=models,params=params)
             logging.info("Model Training Completed")
             logging.info(f"Model Report:{model_report}")
             print(model_report)
 
             ## To get best acc score from dict
-            best_acc_score = max(sorted(model_report.values()))
+            best_sorted_dict = evaluate_best_model(model_report)
+            
 
             ## To get best model name from dict
-            best_model_name = list(model_report.keys())[
-                list(model_report.values()).index(best_acc_score)]
+            best_model_name = best_sorted_dict[0][0]
+            best_acc_score = best_sorted_dict[0][1][1]
+            best_pr_score = best_sorted_dict[0][1][3]
 
             best_model = models[best_model_name]
 
-            logging.info(f'Best Model Found, Model_Name: {best_model_name},Acc_Score:{best_acc_score}')
+            logging.info(f'Best Model Found, Model_Name: {best_model_name},Acc_Score:{best_acc_score}, PR-AUC Score:{best_pr_score}')
             print('\n============================================================================\n')
-            print(f'Best Model Found, Model_Name: {best_model_name},Acc_Score:{best_acc_score}')
-            print('\n============================================================================\n') 
-            
+            print(f'Best Model Found, Model_Name: {best_model_name},Acc_Score:{best_acc_score}, PR-AUC Score:{best_pr_score}')
+            print('\n============================================================================\n')  
+
+
             logging.info("Saving Model File")
             save_object(
                 file_path=self.model_trainer_config.model_file_path,
                 obj=best_model)
 
-            return best_model_name,best_acc_score
+            return best_model_name,best_acc_score,best_pr_score
 
         except Exception as e:
             logging.info("The error is occured in model training process")

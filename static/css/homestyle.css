@@ -1,0 +1,50 @@
+body {
+    font-family: sans-serif;
+    margin: 0;    
+    padding: 10px;
+  }
+  .header img {
+    width: 1000px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .header-description {
+    font-size: 18px;
+    color: #888;
+  }
+  
+  .main {
+    padding: 25px;
+    text-align: center;
+  }
+  
+  .main-text {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    
+  }
+  
+  .prediction-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+  

@@ -4,7 +4,7 @@ from src.logger import logging
 from src.exception import CustomException
 from pymongo import MongoClient
 from zipfile import Path
-from src.utils import MainUtils
+#from src.utils import MainUtils
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 from src.constant import *
@@ -29,7 +29,7 @@ class DataIngestion:
     # Initializing data ingetion config. 
     def __init__(self):
         self.ingestionconfig = DataIngestionconfig()
-        self.utils = MainUtils()
+        #self.utils = MainUtils()
 
     def export_collection_as_dataframe(self,collection_name, db_name):
         '''

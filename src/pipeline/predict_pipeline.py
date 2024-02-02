@@ -7,7 +7,6 @@ from src.exception import CustomException
 from flask import request
 from src.constant import *
 from src.utils import load_object
-from src.utils import MainUtils
 from dataclasses import dataclass
         
         
@@ -31,7 +30,6 @@ class PredictionPipeline:
     def __init__(self, request: request):
         # initializing 
         self.request = request
-        self.utils = MainUtils()
         self.prediction_pipeline_config = PredictionPipelineConfig()
 
 

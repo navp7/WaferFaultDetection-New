@@ -2,19 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Wafer Fault Detection Application</title>
+    <title>Wafer Sensor Fault Detection ML App</title>
+    <link rel="stylesheet" href="static\css\homestyle.css">
 </head>
 <body>
+    <header class="header">
+        <img src="https://www.shutterstock.com/image-photo/silicon-chip-wafer-reflecting-blue-260nw-2131797221.jpg" alt="Wafer Sensors">
+        <h1>Wafer Sensor Fault Detection</h1>
+        <p class="header-description">Detecting faults early to prevent production issues</p>
+    </header>
 
-    <h1>Welcome to Wafer Fault Detection Application</h1>
+    <main class="main">
+        
+        <p class="main-text">This application utilizes machine learning to accurately detect faults in wafer sensors, ensuring optimal production quality, reducing labour costs and QC time.</p>
 
-    <!-- Button that redirects to a different link (change 'your_link_here' to the desired URL) 
-    <a href="http://127.0.0.1:5000/train">
-        <button>Train Model</button>
-    </a>-->
-	<h3>For Model Training: type '/train' followed by current URL.</h3>
-    <p>Hit enter & It will take some time to train it.</p>
+        <button class="prediction-button" onclick="window.location.href='/predict'">Make a Prediction</button>
+    </main>
+
+    <footer class="footer">
+        <p>Note: Click above button and upload csv file and get predicted result in a csv format.</p>
+    </footer>
 </body>
 </html>

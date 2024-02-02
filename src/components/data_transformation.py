@@ -8,7 +8,7 @@ from imblearn.over_sampling import RandomOverSampler
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import RobustScaler
 from sklearn.pipeline import Pipeline
-from src.utils import save_object,unwanted_feat,MainUtils
+from src.utils import save_object,unwanted_feat
 from src.constant import *
 
 
@@ -28,7 +28,7 @@ class DataTransformation:
     # Initializing data transformation config.
     def __init__(self):
         self.data_transformation_config = DataTransformation_config()
-        self.utils = MainUtils()
+        #self.utils = MainUtils()
 
     # creating method to get a preprocessor object.
     def get_DataTransformation_obj(self):
